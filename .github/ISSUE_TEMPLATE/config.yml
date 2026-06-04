@@ -10,7 +10,7 @@ contact_links:
     url: https://github.com/aljawaid/issue-templates/milestones   #{owner} and {repo} can't be used - must be hardcoded
     about: View the milestones for this repository.
   - name: ➡️ Projects
-    url: https://github.com/users/aljawaid/projects/1    #{owner} can't be used - must be hardcoded
+    url: https://github.com/users/aljawaid/projects/5    #{owner} can't be used - must be hardcoded
     about: Check the project activity.
   - name: ➡️ Create Pull Request
     url: https://github.com/aljawaid/issue-templates/compare      #{owner} and {repo} can't be used - must be hardcoded

@@ -3,7 +3,7 @@ description: Report a missing feature in the application
 title: "[MISSING FEATURE] "
 labels: ["feature or function"]
 assignees: 'aljawaid'         # must be hardcoded
-projects: ["aljawaid/1"]      # must be hardcoded
+projects: ["aljawaid/5"]      # must be hardcoded
 body:
 - type: markdown
   attributes:

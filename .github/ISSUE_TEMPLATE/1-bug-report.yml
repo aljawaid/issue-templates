@@ -3,7 +3,7 @@ description: Report a bug in the application
 title: "[BUG] "
 labels: ["bug"]
 assignees: 'aljawaid'       # must be hardcoded
-projects: ["aljawaid/1"]    # must be hardcoded
+projects: ["aljawaid/5"]    # must be hardcoded
 body:
 - type: markdown
   attributes:

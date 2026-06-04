@@ -3,7 +3,7 @@ description: For anything else.
 title: "[GENERAL] "
 labels: [""]
 assignees: 'aljawaid'         # must be hardcoded
-projects: ["aljawaid/1"]      # must be hardcoded
+projects: ["aljawaid/5"]      # must be hardcoded
 body:
 - type: markdown
   attributes:
