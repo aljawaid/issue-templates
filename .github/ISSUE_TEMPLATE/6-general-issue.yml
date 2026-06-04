@@ -1,0 +1,73 @@
+name: 💡 General Issue
+description: For anything else.
+title: "[GENERAL] "
+labels: [""]
+assignees: 'aljawaid'         # must be hardcoded
+projects: ["aljawaid/1"]      # must be hardcoded
+body:
+- type: markdown
+  attributes:
+    value: "#### Remember to update and add relevant labels to this issue (at the bottom of this form)"
+- type: input
+  id: version
+  attributes:
+    label: APPLICATION VERSION
+    description: |
+      Go to `Settings > Business`
+    placeholder: "v0.0.9"
+  validations:
+    required: true
+- type: checkboxes
+  attributes:
+    label: IS THERE AN EXISTING ISSUE FOR THIS?
+    description: |
+      Search to see if an issue already exists to avoid duplicates. ![https://github.com/{owner}/{repo}/issues]()
+    options:
+    - label: I have searched the existing issues and found nothing
+      required: false
+- type: textarea
+  attributes:
+    label: DESCRIPTION
+    description: A concise summary of the issue.
+  validations:
+    required: false
+- type: textarea
+  attributes:
+    label: ADDITIONAL INFORMATION
+    description: Add any other relevant details here.
+  validations:
+    required: false
+- type: textarea
+  attributes:
+    label: BUSINESS USE CASE
+    description: Why is this change important to you? How would you use it?
+    placeholder: |
+      Optional
+  validations:
+    required: false
+- type: textarea
+  attributes:
+    label: SCREENSHOTS
+    description: |
+      Add screenshots if applicable
+  validations:
+    required: false
+- type: textarea
+  attributes:
+    label: RELATED ISSUES
+    description: Mention any related issues here for them to be linked. Or create sub-issues after this issue.
+    placeholder: |
+      #1 #152 #64
+  validations:
+    required: false
+- type: textarea
+  attributes:
+    label: YOUR ENVIRONMENT
+    description: |
+      _Change if necessary_
+    value: |
+        - Operating System and version (desktop or mobile): `Windows 10 Pro` `Windows 11 Pro`
+        - Browser name and version: `Firefox` _(latest)_
+    render: markdown
+  validations:
+    required: false
