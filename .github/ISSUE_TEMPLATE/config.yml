@@ -1,0 +1,48 @@
+blank_issues_enabled: false       # make true for 'anyone' or for GitHub mobile app - issue forms dont work in mobile app
+contact_links:
+  - name: ➡️ Discussions
+    url: https://github.com/aljawaid/issue-templates/discussions  #{owner} and {repo} can't be used - must be hardcoded
+    about: Create discussions for any static non-sensitive information.
+  - name: ➡️ Labels
+    url: https://github.com/aljawaid/issue-templates/labels       #{owner} and {repo} can't be used - must be hardcoded
+    about: View and change labels.
+  - name: ➡️ Milestones
+    url: https://github.com/aljawaid/issue-templates/milestones   #{owner} and {repo} can't be used - must be hardcoded
+    about: View the milestones for this repository.
+  - name: ➡️ Projects
+    url: https://github.com/users/aljawaid/projects/1    #{owner} can't be used - must be hardcoded
+    about: Check the project activity.
+  - name: ➡️ Create Pull Request
+    url: https://github.com/aljawaid/issue-templates/compare      #{owner} and {repo} can't be used - must be hardcoded
+    about: Submit changes to code instead of creating an issue.
+issue_templates:
+  - name: "Bug Report"
+    description: "Report a bug in the application."
+    title: "[BUG]: "
+    labels: ["bug"]
+    body: "./ISSUE_TEMPLATE/1-bug-report.yml"
+  - name: "Missing Feature"
+    description: "Report a missing feature in the application."
+    title: "[MISSING FEATURE]: "
+    labels: ["bug"]
+    body: "./ISSUE_TEMPLATE/2-missing-feature.yml"
+  - name: "Feature Change or Adjustment"
+    description: "Suggest a feature improvement or change."
+    title: "[FEATURE]: "
+    labels: ["enhancement"]
+    body: "./ISSUE_TEMPLATE/3-feature-change.yml"
+  - name: "Feature Request"
+    description: "Propose a new feature."
+    title: "[FEATURE]: "
+    labels: ["enhancement"]
+    body: "./ISSUE_TEMPLATE/4-feature-request.yml"
+  - name: "Documentation"
+    description: "Suggest changes to the onscreen documentation."
+    title: "[DOCS]: "
+    labels: ["documentation", "clarification needed", "question"]
+    body: "./ISSUE_TEMPLATE/5-documentation.yml"
+  - name: "General Issue"
+    description: "For anything else."
+    title: "[GENERAL]: "
+    labels: []
+    body: "./ISSUE_TEMPLATE/6-general-issue.yml"
