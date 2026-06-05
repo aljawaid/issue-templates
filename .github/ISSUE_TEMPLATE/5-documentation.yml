@@ -17,7 +17,7 @@ body:
     placeholder: "v0.0.9"
   validations:
     required: true
-type: dropdown
+- type: dropdown
   attributes:
     label: WHAT TYPE OF ISSUE IS THIS?
     description: |
