@@ -7,7 +7,7 @@ projects: ["aljawaid/5"]      # must be hardcoded
 body:
 - type: markdown
   attributes:
-    value: "#### Remember to update and add relevant labels to this issue (at the bottom of this form)"
+    value: "#### <mark>Remember to update and add relevant labels to this issue</mark> (at the bottom of this form)"
 - type: input
   id: version
   attributes:
@@ -17,6 +17,16 @@ body:
     placeholder: "v0.0.9"
   validations:
     required: true
+type: dropdown
+  attributes:
+    label: WHAT TYPE OF ISSUE IS THIS?
+    description: |
+      Choose the appropriate topic of the issue
+    options:
+      - Onscreen documentation, text and wording
+      - Documentation section
+  validations:
+    required: true
 - type: checkboxes
   attributes:
     label: IS THERE AN EXISTING ISSUE FOR THIS?
@@ -24,6 +34,8 @@ body:
       Search to see if an issue already exists to avoid duplicates. ![https://github.com/{owner}/{repo}/issues]()
     options:
     - label: I have searched the existing issues and found nothing
+      required: false
+    - label: Related issues, commits or discussions are mentioned in the Related Issues section below
       required: false
 - type: textarea
   attributes:

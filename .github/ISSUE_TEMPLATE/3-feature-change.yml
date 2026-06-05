@@ -7,7 +7,7 @@ projects: ["aljawaid/5"]      # must be hardcoded
 body:
 - type: markdown
   attributes:
-    value: "#### Remember to update and add relevant labels to this issue (at the bottom of this form)"
+    value: "#### <mark>Remember to update and add relevant labels to this issue</mark> (at the bottom of this form)"
 - type: input
   id: version
   attributes:
@@ -25,6 +25,8 @@ body:
     options:
     - label: I have searched the existing issues and found nothing
       required: false
+    - label: Related issues, commits or discussions are mentioned in the Related Issues section below
+      required: false
 - type: textarea
   attributes:
     label: CURRENT BEHAVIOUR
@@ -33,18 +35,8 @@ body:
     required: false
 - type: textarea
   attributes:
-    label: STEPS TO REPRODUCE
-    description: Steps to reproduce the behaviour.
-    placeholder: |
-      1. Go to '...'
-      2. Click on '...'
-      3. See error...
-  validations:
-    required: false
-- type: textarea
-  attributes:
-    label: EXPECTED BEHAVIOUR
-    description: Explain what you expected to happen.
+    label: WHAT SHOULD CHANGE?
+    description: Explain what you expect to happen.
   validations:
     required: false
 - type: textarea

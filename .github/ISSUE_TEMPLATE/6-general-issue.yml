@@ -7,7 +7,7 @@ projects: ["aljawaid/5"]      # must be hardcoded
 body:
 - type: markdown
   attributes:
-    value: "#### Remember to update and add relevant labels to this issue (at the bottom of this form)"
+    value: "#### <mark>Remember to update and add relevant labels to this issue</mark> (at the bottom of this form)"
 - type: input
   id: version
   attributes:
@@ -25,6 +25,8 @@ body:
     options:
     - label: I have searched the existing issues and found nothing
       required: false
+    - label: Related issues, commits or discussions are mentioned in the Related Issues section below
+      required: false
 - type: textarea
   attributes:
     label: DESCRIPTION
@@ -35,14 +37,6 @@ body:
   attributes:
     label: ADDITIONAL INFORMATION
     description: Add any other relevant details here.
-  validations:
-    required: false
-- type: textarea
-  attributes:
-    label: BUSINESS USE CASE
-    description: Why is this change important to you? How would you use it?
-    placeholder: |
-      Optional
   validations:
     required: false
 - type: textarea
