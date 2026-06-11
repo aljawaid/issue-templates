@@ -1,0 +1,141 @@
+name: Generate Release Notes (No AI)
+
+on:
+  push:
+    paths:
+      - "CHANGELOG.md"
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Generate Release Notes
+        run: |
+          python << 'EOF'
+          import re
+          from datetime import datetime
+
+          CHANGELOG_FILE = "CHANGELOG.md"
+          OUTPUT_FILE = "RELEASE_NOTES.md"
+
+          IGNORE_PATTERNS = [
+              r"chore\\(release\\)",
+              r"Merge pull request",
+              r"Update changelogs",
+              r"^c[a-f0-9]{6,} - chore",
+          ]
+
+          def should_ignore(text):
+              return any(re.search(p, text, re.I) for p in IGNORE_PATTERNS)
+
+          def categorize(msg):
+              msg = msg.lower()
+
+              if any(k in msg for k in ["add", "added", "new", "implement"]):
+                  return "Features"
+
+              if any(k in msg for k in ["fix", "error", "issue", "resolve", "resolved"]):
+                  return "Fixes"
+
+              return "Improvements"
+
+
+          with open(CHANGELOG_FILE, "r", encoding="utf-8") as f:
+              changelog = f.read()
+
+          # Detect latest version
+          versions = re.findall(r"v\d+\.\d+\.\d+", changelog)
+          if not versions:
+              raise Exception("No version found")
+
+          latest_version = versions[0]
+
+          # Extract section for latest version
+          split = re.split(rf"({re.escape(latest_version)})", changelog, maxsplit=1)
+
+          if len(split) < 3:
+              raise Exception("Could not parse latest version section")
+
+          section = split[1] + split[2]
+
+          # Extract commit messages
+          commits = re.findall(r"[a-f0-9]{6,} - (.*?) \[", section)
+
+          grouped = {
+              "Features": [],
+              "Fixes": [],
+              "Improvements": []
+          }
+
+          for c in commits:
+              if should_ignore(c):
+                  continue
+
+              grouped[categorize(c)].append(c)
+
+          # Avoid duplicates
+          try:
+              with open(OUTPUT_FILE, "r", encoding="utf-8") as f:
+                  existing = f.read()
+          except FileNotFoundError:
+              existing = ""
+
+          if latest_version in existing:
+              print("Already exists, skipping.")
+              exit(0)
+
+          # Build output
+          today = datetime.utcnow().strftime("%Y-%m-%d")
+
+          output = []
+          output.append(f"# {latest_version} ({today})\n")
+
+          if grouped["Features"]:
+              output.append("## Features")
+              output.extend([f"- {x}" for x in grouped["Features"]])
+              output.append("")
+
+          if grouped["Fixes"]:
+              output.append("## Fixes")
+              output.extend([f"- {x}" for x in grouped["Fixes"]])
+              output.append("")
+
+          if grouped["Improvements"]:
+              output.append("## Improvements")
+              output.extend([f"- {x}" for x in grouped["Improvements"]])
+              output.append("")
+
+          output.append("---\n")
+
+          with open(OUTPUT_FILE, "a", encoding="utf-8") as f:
+              f.write("\n".join(output))
+
+          print(f"Generated release notes for {latest_version}")
+          EOF
+
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add RELEASE_NOTES.md
+
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+
+          git commit -m "docs: update release notes"
+          git push
